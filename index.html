@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>luzel5798 | 마이링크</title>
+  <meta name="description" content="luzel5798의 마이링크 - 내 링크를 한 곳에 모았어요." />
+  <!-- OG 태그: 카카오톡/SNS에 공유할 때 보이는 제목과 설명 -->
+  <meta property="og:title" content="luzel5798 | 마이링크" />
+  <meta property="og:description" content="내 링크를 한 곳에 모았어요." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f6fb;
+      --card: #ffffff;
+      --text: #1b2333;
+      --muted: #5f6b80;
+      --accent: #2f5bea;
+      --accent-soft: #e6ecfd;
+      --border: #e1e6ef;
+      --shadow: 0 2px 10px rgba(27, 35, 51, 0.06);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #11151d;
+        --card: #1a202b;
+        --text: #eef1f7;
+        --muted: #9aa5b8;
+        --accent: #7b9bff;
+        --accent-soft: #24304d;
+        --border: #2a3242;
+        --shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Noto Sans KR", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 48px 16px 32px;
+      line-height: 1.5;
+    }
+    main { width: 100%; max-width: 480px; }
+
+    /* 프로필 영역 */
+    .profile { text-align: center; margin-bottom: 32px; }
+    .avatar {
+      width: 96px; height: 96px; border-radius: 50%;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--accent), #7f5af0);
+      color: #fff; font-size: 36px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+    .name { font-size: 22px; font-weight: 700; }
+    .affiliation { font-size: 14px; color: var(--muted); margin-top: 2px; }
+    .bio { font-size: 15px; color: var(--muted); margin-top: 12px; }
+
+    /* 링크 목록 */
+    .links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .link {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: var(--shadow);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .link:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .link:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .icon {
+      flex: none; width: 40px; height: 40px; border-radius: 10px;
+      background: var(--accent-soft); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .icon svg { width: 22px; height: 22px; }
+    .text { min-width: 0; flex: 1; }
+    .title { display: block; font-weight: 500; font-size: 16px; }
+    .url {
+      display: block;
+      font-size: 13px; color: var(--muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .arrow { color: var(--muted); flex: none; }
+
+    footer { text-align: center; font-size: 12px; color: var(--muted); margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <main>
+    <!-- ✏️ 1) 프로필: 이름, 소속, 소개글을 본인 정보로 바꾸세요 -->
+    <section class="profile">
+      <!-- 프로필 사진을 쓰려면 저장소에 profile.jpg를 올리고 아래 div를
+           <img class="avatar" src="profile.jpg" alt="프로필 사진"> 으로 바꾸세요 -->
+      <div class="avatar" aria-hidden="true">L</div>
+      <h1 class="name">luzel5798</h1>
+      <p class="affiliation">한양대학교</p>
+      <p class="bio">바이브 코딩으로 만든 나만의 링크 모음 페이지입니다.</p>
+    </section>
+
+    <!-- ✏️ 2) 링크 목록: 아래 links 배열에서 제목과 주소를 수정·추가하세요 -->
+    <ul class="links" id="links"></ul>
+
+    <footer>© 2026 luzel5798 · MyLink</footer>
+  </main>
+
+  <script>
+    // 링크 데이터 (icon: github | repo | instagram | blog | link)
+    const links = [
+      { title: "GitHub", url: "https://github.com/luzel5798", icon: "github" },
+      { title: "마이링크 저장소", url: "https://github.com/luzel5798/mylink", icon: "repo" },
+      { title: "Instagram", url: "https://www.instagram.com/", icon: "instagram" }, // 본인 계정 주소로 바꾸세요
+      { title: "Blog", url: "https://blog.naver.com/", icon: "blog" }               // 본인 블로그 주소로 바꾸세요
+    ];
+
+    const icons = {
+      github: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>',
+      repo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>',
+      instagram: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
+      blog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>',
+      link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1 1"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1-1"/></svg>'
+    };
+    const arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+
+    const list = document.getElementById("links");
+    links.forEach(({ title, url, icon }) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.className = "link";
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.innerHTML =
+        '<span class="icon">' + (icons[icon] || icons.link) + '</span>' +
+        '<span class="text"><span class="title"></span><span class="url"></span></span>' +
+        '<span class="arrow">' + arrow + '</span>';
+      a.querySelector(".title").textContent = title;
+      a.querySelector(".url").textContent = url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>
